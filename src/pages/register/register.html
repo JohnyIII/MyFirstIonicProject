@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Register</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-list>
+
+    <ion-item>
+      <ion-label floating>Email</ion-label>
+      <ion-input type="email" #email></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Uživatelské jméno</ion-label>
+      <ion-input type="username" #username></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Heslo</ion-label>
+      <ion-input type="password" #password></ion-input>
+    </ion-item>
+
+    <ion-item padding-top>
+      <ion-label>Kraj</ion-label>
+      <ion-select [(ngModel)]="kraj" interface="popover">
+        <ion-option *ngFor="let kraj of kraje" [value]="kraj" >{{kraj.nazev}}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>VoiceChat</ion-label>
+      <ion-checkbox [(ngModel)]="mikrofon"></ion-checkbox>
+    </ion-item>
+
+  </ion-list>
+
+  <div>
+    <button block ion-button (click)="registerUser()">Registrovat</button>
+  </div>
+
+</ion-content>

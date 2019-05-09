@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ModalController } from 'ionic-angular';
 
 import { ItemDetailsPage } from '../item-details/item-details';
+import { NewEventPage } from '../new-event/new-event';
 
 @Component({
   selector: 'page-list',
@@ -12,7 +13,7 @@ export class ListPage {
   icons: string[];
   items: Array<{title: string, note: string, icon: string}>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public modalCtrl: ModalController) {
     this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
     'american-football', 'boat', 'bluetooth', 'build'];
 
@@ -26,9 +27,16 @@ export class ListPage {
     }
   }
 
-  itemTapped(event, item) {
+  itemTapped(event, item)
+  {
     this.navCtrl.push(ItemDetailsPage, {
       item: item
     });
+  }
+
+  addUdalost()
+  {
+    const modal = this.modalCtrl.create(NewEventPage);
+    modal.present();
   }
 }

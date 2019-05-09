@@ -7,6 +7,11 @@ import { ListPage } from '../pages/list/list';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { FindPlayerPage} from "../pages/find-player/find-player";
+import { PlayerDetailPage} from "../pages/player-detail/player-detail";
+import { PlayerMapPage} from "../pages/player-map/player-map";
+import { LoggedinPage } from '../pages/loggedin/loggedin';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 
 @Component({
@@ -23,14 +28,19 @@ export class MyApp {
     public platform: Platform,
     public menu: MenuController,
     public statusBar: StatusBar,
-    public splashScreen: SplashScreen
+    public splashScreen: SplashScreen,
+    public fb : AngularFireAuth
   ) {
     this.initializeApp();
 
     // set our app's pages
     this.pages = [
-      { title: 'Hello Ionic', component: HelloIonicPage },
-      { title: 'My First List', component: ListPage }
+      { title: 'Domů' , component : LoggedinPage},
+      { title: 'Můj profil', component: PlayerDetailPage },
+      { title: 'Najdi hráče', component: FindPlayerPage },
+      { title: 'Události', component: ListPage },
+      { title: 'Mapa hráčů', component: PlayerMapPage }
+
     ];
   }
 
@@ -49,4 +59,13 @@ export class MyApp {
     // navigate to the new page if it is not the current page
     this.nav.setRoot(page.component);
   }
+
+  logout(){
+  this.fb.auth.signOut().then(() => {
+    this.menu.close();
+    this.nav.setRoot(this.rootPage);
+  }
+  );
+}
+
 }
