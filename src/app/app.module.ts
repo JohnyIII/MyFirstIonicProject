@@ -18,12 +18,18 @@ import { AngularFireModule} from "angularfire2";
 import { AngularFireAuthModule} from "angularfire2/auth";
 import { LoggedinPage} from "../pages/loggedin/loggedin";
 import { AngularFireDatabaseModule} from "angularfire2/database";
-import { KrajServiceProvider } from '../providers/kraj-service/kraj-service';
-import { UserProvider } from '../providers/user/user';
+import { KrajProvider } from '../providers/kraj.provider';
+import { UserProvider } from '../providers/user.provider';
 import { NewEventPage } from '../pages/new-event/new-event';
+import {UdalostProvider} from "../providers/udalost.provider";
 
 const firebase = {
-
+  apiKey: "AIzaSyBSMiCjENqE1jFthMAMH1SRglFcBplN0vg",
+  authDomain: "my-first-ionic-project-b96ad.firebaseapp.com",
+  databaseURL: "https://my-first-ionic-project-b96ad.firebaseio.com",
+  projectId: "my-first-ionic-project-b96ad",
+  storageBucket: "my-first-ionic-project-b96ad.appspot.com",
+  messagingSenderId: "245803748410"
 };
 
 @NgModule({
@@ -65,7 +71,8 @@ const firebase = {
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    KrajServiceProvider,
+    KrajProvider,
+    UdalostProvider,
     UserProvider,
   ]
 })

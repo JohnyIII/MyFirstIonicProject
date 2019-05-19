@@ -4,28 +4,19 @@ import { NavController, NavParams, ModalController } from 'ionic-angular';
 
 import { ItemDetailsPage } from '../item-details/item-details';
 import { NewEventPage } from '../new-event/new-event';
+import {Udalost} from "../../model/udalost.model";
+import {UdalostProvider} from "../../providers/udalost.provider";
 
 @Component({
   selector: 'page-list',
   templateUrl: 'list.html'
 })
 export class ListPage {
-  icons: string[];
-  items: Array<{title: string, note: string, icon: string}>;
+  udalosti : Array<Udalost>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public modalCtrl: ModalController) {
-    this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
-    'american-football', 'boat', 'bluetooth', 'build'];
-
-    this.items = [];
-    for(let i = 1; i < 11; i++) {
-      this.items.push({
-        title: 'Item ' + i,
-        note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
+  constructor(public navCtrl: NavController, public navParams: NavParams,public modalCtrl: ModalController,public provider: UdalostProvider) {
+    provider.getUdalosti().subscribe( val=>this.udalosti=val);
     }
-  }
 
   itemTapped(event, item)
   {

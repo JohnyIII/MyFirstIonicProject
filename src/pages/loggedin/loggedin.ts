@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireAuth } from "angularfire2/auth";
 import { Kraj } from '../../model/kraj.model';
-import firebase from 'firebase';
+import {UserProvider} from "../../providers/user.provider";
+import {KrajProvider} from "../../providers/kraj.provider";
 /**
  * Generated class for the LoggedinPage page.
  *
@@ -17,32 +18,18 @@ import firebase from 'firebase';
 })
 export class LoggedinPage {
 
-  private KrajRef = firebase.database().ref('Kraje');
   nickname: string;
-  kraje: Array<Kraj[]>;
-  okresy: Array<any>;
+  kraje: Array<Kraj>;
 
   constructor(public fa: AngularFireAuth,
     public navCtrl: NavController,
-    public navParams: NavParams) {
-    var ololo;
-    firebase.database().ref('users').orderByChild('email').equalTo(this.fa.auth.currentUser.email).on('value', snapshot => {
-      snapshot.forEach(function(data) {
-        console.log(data.val().nickname);
-        ololo = data.val().nickname;
-      });
-      this.nickname = ololo;
-    });
+    public navParams: NavParams,
+    private userProvider: UserProvider,
+    private krajeProvider: KrajProvider) {
+      userProvider.getUser(this.fa.auth.currentUser.email).subscribe(ref =>this.nickname = ref[0].nickname);
   }
 
   ionViewDidLoad() {
-    this.kraje = [];
-    this.KrajRef.on('value', itemSnapshot => {
-      this.kraje = [];
-      itemSnapshot.forEach(itemSnap => {
-        this.kraje.push(itemSnap.val());
-        return false;
-      });
-    });
+    this.krajeProvider.getKrajList().subscribe(ref => this.kraje = ref);
   }
 }

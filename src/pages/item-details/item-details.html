@@ -8,11 +8,49 @@
 </ion-header>
 
 <ion-content>
-  <h3 text-center *ngIf="selectedItem">
-    {{selectedItem.title}}
-    <ion-icon [name]="selectedItem.icon"></ion-icon>
-  </h3>
-  <h4 text-center *ngIf="selectedItem">
-    You navigated here from <b>{{selectedItem.title}}</b>
-  </h4>
+  <ion-list>
+
+    <ion-item>
+      <ion-label>Název události</ion-label>
+      <ion-input [(ngModel)]="selectedItem.nazev" type="text" [readonly]="edit"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Popis události</ion-label>
+      <ion-textarea [(ngModel)]="selectedItem.popis" [readonly]="edit"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Datum události</ion-label>
+      <ion-datetime [(ngModel)]="selectedItem.datumUdalosti" displayFormat="MMM DD YYYY" [disabled]="edit"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Začátek události</ion-label>
+      <ion-datetime [(ngModel)]="selectedItem.konec" displayFormat="h:mm A" pickerFormat="h mm A" [disabled]="edit"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Konec události</ion-label>
+      <ion-datetime [(ngModel)]="selectedItem.zacatek" displayFormat="h:mm A" pickerFormat="h mm A" [disabled]="edit"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Max.hráčů {{selectedItem.maxPocet}}</ion-label>
+      <ion-range   min="1" max="64" [(ngModel)]="selectedItem.maxPocet" [disabled]="edit" color="secondary">
+        <ion-icon range-left small name="contact"></ion-icon>
+        <ion-icon range-right large name="contacts"></ion-icon>
+      </ion-range>
+    </ion-item>
+  </ion-list>
+
+  <ion-fab bottom right>
+    <button ion-fab (click)='editUdalost()' *ngIf="edit">
+      <ion-icon name="create"></ion-icon>
+    </button>
+    <button ion-fab (click)='saveUdalost()' *ngIf="!edit">
+      <ion-icon name="checkmark"></ion-icon>
+    </button>
+  </ion-fab>
+
 </ion-content>

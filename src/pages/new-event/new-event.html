@@ -23,32 +23,32 @@
 
     <ion-item>
       <ion-label floating>Název události</ion-label>
-      <ion-input type="text" #nazev></ion-input>
+      <ion-input [(ngModel)]="udalost.nazev" type="text"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label floating>Popis události</ion-label>
-      <ion-textarea #popis></ion-textarea>
+      <ion-textarea [(ngModel)]="udalost.popis"></ion-textarea>
     </ion-item>
 
     <ion-item>
       <ion-label>Datum události</ion-label>
-      <ion-datetime displayFormat="MMM DD YYYY"></ion-datetime>
-    </ion-item>
-
-    <ion-item>
-      <ion-label>Konec události</ion-label>
-      <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A"></ion-datetime>
+      <ion-datetime [(ngModel)]="udalost.datumUdalosti" displayFormat="MMM DD YYYY"></ion-datetime>
     </ion-item>
 
     <ion-item>
       <ion-label>Začátek události</ion-label>
-      <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A"></ion-datetime>
+      <ion-datetime [(ngModel)]="udalost.konec" displayFormat="h:mm A" pickerFormat="h mm A"></ion-datetime>
     </ion-item>
 
     <ion-item>
-      <ion-badge item-end color="secondary">{{pocet}}</ion-badge>
-      <ion-range min="1" max="64" [(ngModel)]="pocet" color="secondary">
+      <ion-label>Konec události</ion-label>
+      <ion-datetime [(ngModel)]="udalost.zacatek" displayFormat="h:mm A" pickerFormat="h mm A"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-badge item-end color="secondary">{{udalost.maxPocet}}</ion-badge>
+      <ion-range   min="1" max="64" [(ngModel)]="udalost.maxPocet" color="secondary">
         <ion-icon range-left small name="contact"></ion-icon>
         <ion-icon range-right large name="contacts"></ion-icon>
       </ion-range>
@@ -56,7 +56,7 @@
 
     <div id="topButtons">
       <button ion-button item-lef (click)="dismiss()">Storno</button>
-      <button ion-button item-left>Přidat</button>
+      <button ion-button item-left (click)="save()">Přidat</button>
     </div>
   </ion-list>
 </ion-content>
