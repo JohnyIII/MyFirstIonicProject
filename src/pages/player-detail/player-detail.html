@@ -17,4 +17,35 @@
 
 <ion-content padding>
 
+  <ion-list>
+
+    <ion-item>
+      <ion-label floating>Email</ion-label>
+      <ion-input type="email" [(ngModel)]="user.email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Uživatelské jméno</ion-label>
+      <ion-input type="username" [(ngModel)]="user.nickname" ></ion-input>
+    </ion-item>
+
+    <ion-item padding-top>
+      <ion-label>Kraj</ion-label>
+      <ion-select [(ngModel)]="user.kraj" interface="popover">
+        <ion-option *ngFor="let kraj of kraje" [value]="kraj.zkratka" >{{kraj.nazev}}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item padding-top>
+      <ion-label>VoiceChat</ion-label>
+      <ion-checkbox [(ngModel)]="user.mikrofon"></ion-checkbox>
+    </ion-item>
+
+  </ion-list>
+
+  <div>
+    <button block ion-button (click)="update()">Aktualizovat</button>
+  </div>
+
 </ion-content>
+

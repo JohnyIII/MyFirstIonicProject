@@ -1,7 +1,7 @@
 
-export class user
+export class User
 {
-    $key: string;
+    key: string;
     nickname : string;
     email : string;
     kraj : string;

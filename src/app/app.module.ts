@@ -22,6 +22,15 @@ import { KrajProvider } from '../providers/kraj.provider';
 import { UserProvider } from '../providers/user.provider';
 import { NewEventPage } from '../pages/new-event/new-event';
 import {UdalostProvider} from "../providers/udalost.provider";
+import {GlobalProvider} from "../providers/global.provider";
+import {PlayerDetailPageModule} from "../pages/player-detail/player-detail.module";
+import {NewEventPageModule} from "../pages/new-event/new-event.module";
+import {LoggedinPageModule} from "../pages/loggedin/loggedin.module";
+import {RegisterPageModule} from "../pages/register/register.module";
+import {LoginPageModule} from "../pages/login/login.module";
+import {PlayerMapPageModule} from "../pages/player-map/player-map.module";
+import {FindPlayerPageModule} from "../pages/find-player/find-player.module";
+import {AlertProvider} from "../providers/alert.provider";
 
 const firebase = {
   apiKey: "AIzaSyBSMiCjENqE1jFthMAMH1SRglFcBplN0vg",
@@ -37,35 +46,28 @@ const firebase = {
     MyApp,
     HelloIonicPage,
     ItemDetailsPage,
-    ListPage,
-    FindPlayerPage,
-    PlayerDetailPage,
-    PlayerMapPage,
-    LoginPage,
-    RegisterPage,
-    LoggedinPage,
-    NewEventPage
+    ListPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebase),
     AngularFireAuthModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    PlayerDetailPageModule,
+    NewEventPageModule,
+    LoggedinPageModule,
+    RegisterPageModule,
+    LoginPageModule,
+    PlayerMapPageModule,
+    FindPlayerPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HelloIonicPage,
     ItemDetailsPage,
-    ListPage,
-    FindPlayerPage,
-    PlayerMapPage,
-    PlayerDetailPage,
-    LoginPage,
-    RegisterPage,
-    LoggedinPage,
-    NewEventPage
+    ListPage
   ],
   providers: [
     StatusBar,
@@ -74,6 +76,8 @@ const firebase = {
     KrajProvider,
     UdalostProvider,
     UserProvider,
+    GlobalProvider,
+    AlertProvider
   ]
 })
 export class AppModule {}

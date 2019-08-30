@@ -1,9 +1,12 @@
 import {Component, ViewChild} from '@angular/core';
-import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {AngularFireAuth} from "angularfire2/auth";
 import {LoggedinPage} from "../loggedin/loggedin";
-import firebase from 'firebase';
 import { Kraj } from '../../model/kraj.model';
+import {KrajProvider} from "../../providers/kraj.provider";
+import {UserProvider} from "../../providers/user.provider";
+import {GlobalProvider} from "../../providers/global.provider";
+import {AlertProvider} from "../../providers/alert.provider";
 
 /**
  * Generated class for the RegisterPage page.
@@ -19,7 +22,6 @@ import { Kraj } from '../../model/kraj.model';
 })
 export class RegisterPage {
 
-  private KrajRef = firebase.database().ref('Kraje');
   kraje: Array<Kraj[]>;
   kraj : Kraj;
   mikrofon : boolean;
@@ -28,56 +30,44 @@ export class RegisterPage {
   @ViewChild('password') password;
   @ViewChild('email') email;
 
-  constructor(private alertCtl : AlertController, private fire:AngularFireAuth,public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private fire: AngularFireAuth,
+              public navCtrl: NavController,
+              public navParams: NavParams,
+              private krajProvider: KrajProvider,
+              private userProvider: UserProvider,
+              private globalProvider: GlobalProvider,
+              private alertProvider:AlertProvider) {
   }
 
   ionViewDidLoad() {
-    this.kraje = [];
-    this.KrajRef.on('value', itemSnapshot => {
-      this.kraje = [];
-      itemSnapshot.forEach(itemSnap => {
-        this.kraje.push(itemSnap.val());
-        return false;
-      });
-    });
-    console.log(this.kraje);
-  }
-
-  alert(message : string)
-  {
-    this.alertCtl.create(
-      {
-        title : 'Info!',
-        subTitle : message,
-        buttons : ['OK']
-      }
-    ).present();
+    this.krajProvider.getKrajList().subscribe(ref => this.kraje= ref);
   }
 
   registerUser()
   {
-    console.log(this.uname);
     if(this.uname.value.length<4)
     {
-      this.alert('Zadejte prosim uzivatelske jmeno alespon 4 znaky dlouhe');
+      this.alertProvider.alert('Zadejte prosim uzivatelske jmeno alespon 4 znaky dlouhe');
       return;
     }
     this.fire.auth.createUserWithEmailAndPassword(this.email.value,this.password.value)
       .then(data =>
       {
-        console.log('got data', data);
-        firebase.database().ref('users').push().set({
-          email : this.email.value,
-          nickname : this.uname.value,
-          kraj : this.kraj.zkratka,
-          mikrofon : this.mikrofon
-        });
-        this.alert('You are registered, welcome!')
-        this.navCtrl.setRoot(LoggedinPage);;
+        this.userProvider.insertUser(this.email.value,this.uname.value,this.kraj.zkratka,this.mikrofon).subscribe(
+          () => {
+            this.userProvider.getUser(this.email.value).subscribe(
+              ref => {
+                this.globalProvider.user = ref[0];
+                this.alertProvider.alert('You are registered, welcome!');
+                this.navCtrl.setRoot(LoggedinPage);
+              }
+            );
+          }
+        );
       })
       .catch(error =>
       {
-        this.alert(error.message);
+        this.alertProvider.alert(error.message);
         console.log('got an error ', error);
       });
     console.log('Would register in with ', this.email.value, this.password.value);
