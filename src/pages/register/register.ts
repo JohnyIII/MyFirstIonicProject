@@ -51,7 +51,7 @@ export class RegisterPage {
       return;
     }
     this.fire.auth.createUserWithEmailAndPassword(this.email.value,this.password.value)
-      .then(data =>
+      .then(() =>
       {
         this.userProvider.insertUser(this.email.value,this.uname.value,this.kraj.zkratka,this.mikrofon).subscribe(
           () => {

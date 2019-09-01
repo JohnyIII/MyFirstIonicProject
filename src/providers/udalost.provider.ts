@@ -1,8 +1,9 @@
 ///<reference path="../../node_modules/@angular/fire/database/database.d.ts"/>
 import { Injectable } from '@angular/core';
 import {AngularFireDatabase} from "@angular/fire/database";
-import {Observable} from "rxjs";
+import {from, Observable} from "rxjs";
 import {Udalost} from "../model/udalost.model";
+import firebase from "firebase";
 
 
 /*
@@ -21,11 +22,35 @@ export class UdalostProvider {
    return this.db.list('/udalost').valueChanges();
   }
 
-  saveUdalost(udalost: Udalost) {
-    this.db.list('/udalost').push(udalost);
+  getUdalostiValid() : Observable<any>
+  {
+    const today = new Date().toISOString();
+    return this.db.list('/udalost',query => query.orderByChild('datumUdalosti').startAt(today)).valueChanges();
   }
 
-  updateUdalost(udalost: Udalost) {
-    this.db.list('/udalost'+ udalost.$key).push(udalost);
+  saveUdalost(udalost: Udalost) : Observable<any> {
+    let ref = firebase.database().ref('udalost').push();
+    return from(firebase.database().ref('udalost/'+ref.key).update({
+      key: ref.key,
+      zalozil: udalost.zalozil,
+      zacatek: udalost.zacatek,
+      konec: udalost.konec,
+      datumUdalosti: udalost.datumUdalosti,
+      maxPocet: udalost.maxPocet,
+      nazev: udalost.nazev,
+      popis: udalost.popis
+    }))
+  }
+
+  updateUdalost(udalost: Udalost): Observable<any> {
+    return from(firebase.database().ref('udalost/'+udalost.key).update({
+      zalozil: udalost.zalozil,
+      zacatek: udalost.zacatek,
+      konec: udalost.konec,
+      datumUdalosti: udalost.datumUdalosti,
+      maxPocet: udalost.maxPocet,
+      nazev: udalost.nazev,
+      popis: udalost.popis
+    }))
   }
 }

@@ -3,17 +3,12 @@
     <button menuToggle *ngIf="!selectedItem">
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Item Details</ion-title>
+    <ion-title>{{selectedItem.nazev}}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-
-    <ion-item>
-      <ion-label>Název události</ion-label>
-      <ion-input [(ngModel)]="selectedItem.nazev" type="text" [readonly]="edit"></ion-input>
-    </ion-item>
 
     <ion-item>
       <ion-label>Popis události</ion-label>

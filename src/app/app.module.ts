@@ -6,21 +6,15 @@ import { MyApp } from './app.component';
 import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
 import { ItemDetailsPage } from '../pages/item-details/item-details';
 import { ListPage } from '../pages/list/list';
-import { FindPlayerPage } from '../pages/find-player/find-player';
-import { PlayerMapPage } from "../pages/player-map/player-map";
-import { PlayerDetailPage } from "../pages/player-detail/player-detail";
-import { LoginPage} from "../pages/login/login";
-import { RegisterPage} from "../pages/register/register";
+
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AngularFireModule} from "angularfire2";
 import { AngularFireAuthModule} from "angularfire2/auth";
-import { LoggedinPage} from "../pages/loggedin/loggedin";
 import { AngularFireDatabaseModule} from "angularfire2/database";
 import { KrajProvider } from '../providers/kraj.provider';
 import { UserProvider } from '../providers/user.provider';
-import { NewEventPage } from '../pages/new-event/new-event';
 import {UdalostProvider} from "../providers/udalost.provider";
 import {GlobalProvider} from "../providers/global.provider";
 import {PlayerDetailPageModule} from "../pages/player-detail/player-detail.module";

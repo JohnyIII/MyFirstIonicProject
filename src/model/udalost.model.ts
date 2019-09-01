@@ -1,10 +1,10 @@
-import {User} from "firebase";
 import {Kraj} from "./kraj.model";
 import {Time} from "@angular/common";
+import {User} from "./user.model";
 
 export class Udalost
 {
-  $key: string;
+  key: string;
   zalozil: User;
   zacatek: Time;
   konec: Time;

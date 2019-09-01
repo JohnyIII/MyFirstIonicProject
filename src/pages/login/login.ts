@@ -38,7 +38,7 @@ export class LoginPage {
   signIn()
   {
     this.fire.auth.signInWithEmailAndPassword(this.uname.value,this.password.value)
-      .then(data =>{
+      .then(() =>{
         this.userProvider.getUser(this.uname.value).subscribe(
           ref => {
             this.globalProvider.user = ref[0];

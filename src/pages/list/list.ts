@@ -15,7 +15,7 @@ export class ListPage {
   udalosti : Array<Udalost>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public modalCtrl: ModalController,public provider: UdalostProvider) {
-    provider.getUdalosti().subscribe( val=>this.udalosti=val);
+    provider.getUdalostiValid().subscribe( val=>this.udalosti=val);
     }
 
   itemTapped(event, item)

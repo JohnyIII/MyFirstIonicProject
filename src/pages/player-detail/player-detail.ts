@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
-import {AngularFireAuth} from "@angular/fire/auth";
 import {KrajProvider} from "../../providers/kraj.provider";
 import {Kraj} from "../../model/kraj.model";
 import {GlobalProvider} from "../../providers/global.provider";
@@ -25,8 +24,7 @@ export class PlayerDetailPage implements OnInit{
   kraje: Array<Kraj[]>;
   user: User;
 
-  constructor(private fire:AngularFireAuth,
-              public navCtrl: NavController,
+  constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private krajProvider:KrajProvider,
               private globalProvider: GlobalProvider,
