@@ -10,10 +10,10 @@
 <ion-content>
   <ion-list>
     <button ion-item *ngFor="let item of udalosti" (click)="itemTapped($event, item)">
-      {{item.zalozil.nickname}} : {{item.nazev}}
-      <div class="item-note" item-right>
+      <h1> {{item.zalozil.nickname}} : {{item.nazev}}</h1>
+      <p>
        {{item.datumUdalosti}} : {{item.zacatek}} - {{item.konec}}
-      </div>
+      </p>
     </button>
   </ion-list>
 

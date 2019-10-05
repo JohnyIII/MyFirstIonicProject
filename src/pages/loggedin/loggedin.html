@@ -9,20 +9,25 @@
     <button ion-button menuToggle>
     <ion-icon name="menu"></ion-icon>
   </button>
-    <ion-title>Hey {{nickname}}!</ion-title>
+    <ion-title>Hey {{user.nickname}}!</ion-title>
 
   </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
-
+  <h2>Udalosti na ktere jsem prihlaseny</h2>
   <ion-list no-lines>
-    <ion-item ion-item *ngFor="let kraj of kraje">
-      {{ kraj.nazev }} , {{kraj.zkratka}}
+    <ion-item ion-item *ngFor="let udalostUser of udalostiUser">
+      {{udalostUser.udalost.nazev}} : {{udalostUser.udalost.popis}}
     </ion-item>
   </ion-list>
-
+  <h2>Moje udalosti</h2>
+  <ion-list no-lines>
+    <ion-item ion-item *ngFor="let udalost of udalosti">
+      {{udalost.nazev}} : {{udalost.popis}}
+    </ion-item>
+  </ion-list>
 
 
 </ion-content>

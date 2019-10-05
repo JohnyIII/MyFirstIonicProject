@@ -25,6 +25,7 @@ import {LoginPageModule} from "../pages/login/login.module";
 import {PlayerMapPageModule} from "../pages/player-map/player-map.module";
 import {FindPlayerPageModule} from "../pages/find-player/find-player.module";
 import {AlertProvider} from "../providers/alert.provider";
+import {UdalostAndUserProvider} from "../providers/udalostAndUser.provider";
 
 const firebase = {
   apiKey: "AIzaSyBSMiCjENqE1jFthMAMH1SRglFcBplN0vg",
@@ -69,6 +70,7 @@ const firebase = {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     KrajProvider,
     UdalostProvider,
+    UdalostAndUserProvider,
     UserProvider,
     GlobalProvider,
     AlertProvider

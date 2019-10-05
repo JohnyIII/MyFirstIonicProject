@@ -37,15 +37,29 @@
         <ion-icon range-right large name="contacts"></ion-icon>
       </ion-range>
     </ion-item>
-  </ion-list>
+
 
   <ion-fab bottom right>
-    <button ion-fab (click)='editUdalost()' *ngIf="edit">
+    <button ion-fab (click)='editUdalost()' *ngIf="edit && isCreator">
       <ion-icon name="create"></ion-icon>
     </button>
-    <button ion-fab (click)='saveUdalost()' *ngIf="!edit">
+    <button ion-fab (click)='saveUdalost()' *ngIf="!edit && isCreator">
       <ion-icon name="checkmark"></ion-icon>
     </button>
+    <button ion-fab (click)='joinUdalost()' *ngIf="!isCreator">
+      <ion-icon name="hand"></ion-icon>
+    </button>
   </ion-fab>
-
+  <div *ngIf="isCreator">
+    <h2>Prihlaseni uzivatele</h2>
+  <ion-list no-lines>
+    <ion-item ion-item *ngFor="let udalostUser of usersLogged">
+     {{udalostUser.user.nickname}} : {{udalostUser.user.email}}
+      <button ion-fab item-right (click)='deleteUserUdalost(udalostUser)'>
+      <ion-icon name="trash"></ion-icon>
+    </button>
+    </ion-item>
+  </ion-list>
+  </div>
+  </ion-list>
 </ion-content>
