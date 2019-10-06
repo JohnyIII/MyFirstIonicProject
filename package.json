@@ -1,8 +1,8 @@
 {
-  "name": "MyFirstIonicProject",
-  "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
+  "name": "Gaming unity",
+  "version": "0.0.4",
+  "author": "Pavel Chráska",
+  "homepage": "",
   "private": true,
   "scripts": {
     "start": "ionic-app-scripts serve",
@@ -51,7 +51,9 @@
       "cordova-plugin-whitelist": {},
       "cordova-plugin-device": {},
       "cordova-plugin-splashscreen": {},
-      "cordova-plugin-ionic-webview": {},
+      "cordova-plugin-ionic-webview": {
+        "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
+      },
       "cordova-plugin-ionic-keyboard": {}
     },
     "platforms": [
