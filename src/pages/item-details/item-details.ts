@@ -28,6 +28,6 @@ export class ItemDetailsPage {
     this.edit = true;
   }
   participate() {
-    
+
   }
 }

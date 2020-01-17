@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireAuth } from "angularfire2/auth";
-import { Kraj } from '../../model/kraj.model';
 import {UserProvider} from "../../providers/user.provider";
-import {KrajProvider} from "../../providers/kraj.provider";
+import {UdalostAndUserProvider} from "../../providers/udalostAndUser.provider";
+import {User} from "../../model/user.model";
+import {GlobalProvider} from "../../providers/global.provider";
+import {UdalostAndUser} from "../../model/udalostAndUser.model";
+import {UdalostProvider} from "../../providers/udalost.provider";
+import {Udalost} from "../../model/udalost.model";
 /**
  * Generated class for the LoggedinPage page.
  *
@@ -18,18 +22,25 @@ import {KrajProvider} from "../../providers/kraj.provider";
 })
 export class LoggedinPage {
 
-  nickname: string;
-  kraje: Array<Kraj>;
-
+  user: User;
+  udalostiUser: Array<UdalostAndUser>;
+  udalosti: Array<Udalost>;
   constructor(public fa: AngularFireAuth,
     public navCtrl: NavController,
     public navParams: NavParams,
     private userProvider: UserProvider,
-    private krajeProvider: KrajProvider) {
-      userProvider.getUser(this.fa.auth.currentUser.email).subscribe(ref =>this.nickname = ref[0].nickname);
+    private udalostAndUserProvider: UdalostAndUserProvider,
+    private globalProvider: GlobalProvider,
+    private udalostProvider: UdalostProvider) {
+    this.user = globalProvider.user;
   }
 
   ionViewDidLoad() {
-    this.krajeProvider.getKrajList().subscribe(ref => this.kraje = ref);
+    this.udalostAndUserProvider.getUdalostiByUser(this.user).subscribe(
+      data => this.udalostiUser = data
+    );
+    this.udalostProvider.getUdalostByUser(this.user).subscribe(
+      data => this.udalosti = data.filter(udalost => udalost.datumUdalosti>new Date().toISOString())
+    );
   }
 }

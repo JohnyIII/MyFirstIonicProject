@@ -4,6 +4,7 @@ import {AngularFireDatabase} from "@angular/fire/database";
 import {from, Observable} from "rxjs";
 import {Udalost} from "../model/udalost.model";
 import firebase from "firebase";
+import {User} from "../model/user.model";
 
 
 /*
@@ -26,6 +27,10 @@ export class UdalostProvider {
   {
     const today = new Date().toISOString();
     return this.db.list('/udalost',query => query.orderByChild('datumUdalosti').startAt(today)).valueChanges();
+  }
+
+  getUdalostByUser(user: User) : Observable<any>{
+    return this.db.list('/udalost',query => query.orderByChild('zalozil/key').equalTo(user.key)).valueChanges();
   }
 
   saveUdalost(udalost: Udalost) : Observable<any> {
