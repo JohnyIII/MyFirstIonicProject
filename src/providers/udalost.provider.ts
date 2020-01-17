@@ -1,5 +1,6 @@
 ///<reference path="../../node_modules/@angular/fire/database/database.d.ts"/>
 import { Injectable } from '@angular/core';
+// @ts-ignore
 import {AngularFireDatabase} from "@angular/fire/database";
 import {from, Observable} from "rxjs";
 import {Udalost} from "../model/udalost.model";

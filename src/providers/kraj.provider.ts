@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+// @ts-ignore
 import {AngularFireDatabase} from "angularfire2/database";
 import {Observable} from "rxjs";
 /*

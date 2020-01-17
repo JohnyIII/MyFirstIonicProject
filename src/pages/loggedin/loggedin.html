@@ -9,8 +9,6 @@
     <button ion-button menuToggle>
     <ion-icon name="menu"></ion-icon>
   </button>
-    <ion-title>Hey {{nickname}}!</ion-title>
-
   </ion-navbar>
 </ion-header>
 
@@ -18,9 +16,9 @@
 <ion-content padding>
 
   <ion-list no-lines>
-    <ion-title> Moje Události</ion-title>
-    <ion-item ion-item *ngFor="let kraj of kraje">
-      {{ kraj.nazev }} , {{kraj.zkratka}}
+    <ion-title>Události</ion-title>
+    <ion-item ion-item *ngFor="let udalost of udalosti">
+      {{ udalost.nazev }} , {{udalost.maxPocet}}
     </ion-item>
   </ion-list>
 

@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import {Udalost} from "../../model/udalost.model";
 import {GlobalProvider} from "../../providers/global.provider";
-import {User} from "../../model/user.model";
 
 
 @Component({
@@ -17,8 +16,9 @@ export class ItemDetailsPage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private globalProvider: GlobalProvider) {
-    // If we navigated to this page, we will have an item available as a nav param
-    this.selectedItem = navParams.get('item');
+  }
+  ionViewDidLoad() {
+    this.selectedItem = this.navParams.get('item');
   }
 
   editUdalost() {

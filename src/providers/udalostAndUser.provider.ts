@@ -1,11 +1,12 @@
 ///<reference path="../../node_modules/@angular/fire/database/database.d.ts"/>
 import { Injectable } from '@angular/core';
-import {AngularFireDatabase} from "@angular/fire/database";
 import {from, Observable} from "rxjs";
 import firebase from "firebase";
 import {UdalostAndUser} from "../model/udalostAndUser.model";
 import {Udalost} from "../model/udalost.model";
 import {User} from "../model/user.model";
+// @ts-ignore
+import {AngularFireDatabase} from "@angular/fire/database";
 
 
 /*
@@ -14,7 +15,8 @@ import {User} from "../model/user.model";
   See https://angular.io/guide/dependency-injection for more info on providers
   and Angular DI.
 */
-@Injectable()
+// @ts-ignore
+@Injectable({providedIn: 'root'})
 export class UdalostAndUserProvider {
 
   constructor(private db: AngularFireDatabase) { }

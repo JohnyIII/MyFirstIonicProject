@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireAuth } from "angularfire2/auth";
-import {UserProvider} from "../../providers/user.provider";
 import {UdalostAndUserProvider} from "../../providers/udalostAndUser.provider";
 import {User} from "../../model/user.model";
 import {GlobalProvider} from "../../providers/global.provider";
@@ -28,14 +27,12 @@ export class LoggedinPage {
   constructor(public fa: AngularFireAuth,
     public navCtrl: NavController,
     public navParams: NavParams,
-    private userProvider: UserProvider,
     private udalostAndUserProvider: UdalostAndUserProvider,
     private globalProvider: GlobalProvider,
-    private udalostProvider: UdalostProvider) {
-    this.user = globalProvider.user;
-  }
+    private udalostProvider: UdalostProvider) {}
 
   ionViewDidLoad() {
+    this.user = this.globalProvider.user;
     this.udalostAndUserProvider.getUdalostiByUser(this.user).subscribe(
       data => this.udalostiUser = data
     );

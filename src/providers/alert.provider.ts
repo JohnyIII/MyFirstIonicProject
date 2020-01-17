@@ -1,7 +1,6 @@
 // @ts-ignore
 import {Alert, AlertController} from "ionic-angular";
 import {Injectable} from "@angular/core";
-import {Observable} from "rxjs/Observable";
 
 // @ts-ignore
 @Injectable()
