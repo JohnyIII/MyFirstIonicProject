@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {NavController} from "ionic-angular";
-import {LoginPage} from "../login/login";
 import {RegisterPage} from "../register/register";
+import {LoginPage} from "../login/login";
 
 @Component({
   selector: 'page-hello-ionic',
@@ -10,17 +10,6 @@ import {RegisterPage} from "../register/register";
 
 export class HelloIonicPage {
   constructor(public navCtrl:NavController) {
-
-  }
-
-  signIn()
-  {
-
-   this.navCtrl.push(LoginPage);
-  }
-
-  register()
-  {
-    this.navCtrl.push(RegisterPage);
+    this.navCtrl.push(LoginPage);
   }
 }

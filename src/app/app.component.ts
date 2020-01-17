@@ -12,6 +12,7 @@ import { PlayerDetailPage} from "../pages/player-detail/player-detail";
 import { PlayerMapPage} from "../pages/player-map/player-map";
 import { LoggedinPage } from '../pages/loggedin/loggedin';
 import { AngularFireAuth } from 'angularfire2/auth';
+import {ProfileListPage} from "../pages/profile/profile";
 
 
 @Component({
@@ -39,7 +40,8 @@ export class MyApp {
       { title: 'Můj profil', component: PlayerDetailPage },
       { title: 'Najdi hráče', component: FindPlayerPage },
       { title: 'Události', component: ListPage },
-      { title: 'Mapa hráčů', component: PlayerMapPage }
+      { title: 'Mapa hráčů', component: PlayerMapPage },
+      { title: 'Ukazky', component: ProfileListPage}
 
     ];
   }

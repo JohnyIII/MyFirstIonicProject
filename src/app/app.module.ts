@@ -21,10 +21,11 @@ import {PlayerDetailPageModule} from "../pages/player-detail/player-detail.modul
 import {NewEventPageModule} from "../pages/new-event/new-event.module";
 import {LoggedinPageModule} from "../pages/loggedin/loggedin.module";
 import {RegisterPageModule} from "../pages/register/register.module";
-import {LoginPageModule} from "../pages/login/login.module";
 import {PlayerMapPageModule} from "../pages/player-map/player-map.module";
 import {FindPlayerPageModule} from "../pages/find-player/find-player.module";
 import {AlertProvider} from "../providers/alert.provider";
+import {UserUdalostProvider} from "../providers/userUdalost.provider";
+import {LoginPageModule} from "../pages/login/login.module";
 
 const firebase = {
   apiKey: "AIzaSyBSMiCjENqE1jFthMAMH1SRglFcBplN0vg",
@@ -71,7 +72,8 @@ const firebase = {
     UdalostProvider,
     UserProvider,
     GlobalProvider,
-    AlertProvider
+    AlertProvider,
+    UserUdalostProvider
   ]
 })
 export class AppModule {}

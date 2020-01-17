@@ -40,12 +40,14 @@
   </ion-list>
 
   <ion-fab bottom right>
-    <button ion-fab (click)='editUdalost()' *ngIf="edit">
+    <button ion-fab (click)='editUdalost()' *ngIf="edit && globalProvider.canI(selectedItem.zalozil.key)">
       <ion-icon name="create"></ion-icon>
     </button>
-    <button ion-fab (click)='saveUdalost()' *ngIf="!edit">
+    <button ion-fab (click)='saveUdalost()' *ngIf="!edit && globalProvider.canI(selectedItem.zalozil.key)">
       <ion-icon name="checkmark"></ion-icon>
     </button>
+    <button ion-fab (click)="participate()" *ngIf="globalProvider.canI(selectedItem.zalozil.key)"></button>
+    <ion-icon name="ios-game-controller-a"></ion-icon>
   </ion-fab>
 
 </ion-content>

@@ -3,7 +3,7 @@ import {AlertController} from "ionic-angular";
 import {Injectable} from "@angular/core";
 
 // @ts-ignore
-@Injectable({providedIn: 'root'})
+@Injectable()
 export class AlertProvider {
 
   constructor(private alertCtl : AlertController) {}

@@ -1,33 +1,46 @@
 import { Component } from '@angular/core';
+import { NavController, IonicPage } from 'ionic-angular';
 
-import { NavController, NavParams, ModalController } from 'ionic-angular';
-
-import { ItemDetailsPage } from '../item-details/item-details';
-import { NewEventPage } from '../new-event/new-event';
-import {Udalost} from "../../model/udalost.model";
-import {UdalostProvider} from "../../providers/udalost.provider";
-
+@IonicPage()
 @Component({
   selector: 'page-list',
   templateUrl: 'list.html'
 })
 export class ListPage {
-  udalosti : Array<Udalost>;
+  rootPage: any;
+  items: Array<{ title: string, page: any }>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public modalCtrl: ModalController,public provider: UdalostProvider) {
-    provider.getUdalostiValid().subscribe( val=>this.udalosti=val);
-    }
-
-  itemTapped(event, item)
-  {
-    this.navCtrl.push(ItemDetailsPage, {
-      item: item
-    });
+  constructor(public navCtrl: NavController) {
+    this.rootPage = 'ListsPage';
+    this.items = [
+      {
+        title: 'Settings',
+        page : 'SettingsListPage'
+      },
+      {
+        title: 'Sliding Item',
+        page : 'SlidingItemPage'
+      },
+      {
+        title: 'Delete Items',
+        page: 'DeleteItemsPage'
+      },
+      {
+        title: 'Reactive List Label',
+        page: 'ReactiveListLabelPage'
+      },
+      {
+        title: 'Users Listing',
+        page: 'UsersPage'
+      },
+      {
+        title: 'Crypto Currencies',
+        page: 'CryptoListPage'
+      }
+    ];
   }
 
-  addUdalost()
-  {
-    const modal = this.modalCtrl.create(NewEventPage);
-    modal.present();
+  itemTapped(event, item) {
+    this.navCtrl.push(item.page);
   }
 }

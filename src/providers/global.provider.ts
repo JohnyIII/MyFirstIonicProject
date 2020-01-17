@@ -16,4 +16,9 @@ export class GlobalProvider {
   set user(value: User) {
     this._user = value;
   }
+
+  canI(key:String) : boolean
+  {
+    return this._user.key === key;
+  }
 }
