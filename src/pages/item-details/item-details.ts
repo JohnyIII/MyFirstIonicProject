@@ -10,7 +10,7 @@ import {GlobalProvider} from "../../providers/global.provider";
   templateUrl: 'item-details.html'
 })
 export class ItemDetailsPage {
-  selectedItem: Udalost;
+  selectedItem: Udalost = null;
   edit = true;
 
   constructor(public navCtrl: NavController,
@@ -29,5 +29,9 @@ export class ItemDetailsPage {
   }
   participate() {
 
+  }
+
+  dismiss() {
+    this.navCtrl.pop();
   }
 }

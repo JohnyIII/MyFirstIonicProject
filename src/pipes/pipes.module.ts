@@ -5,6 +5,7 @@ import { MomentPipe } from './moment.pipe';
 import { OrderByPipe } from './orderby.pipe';
 import { ShortenStringPipe } from './shorten.pipe';
 import { TemperaturePipe } from './temperature.pipe';
+import {KrajPipe} from "./kraj.pipe";
 
 export const pipes = [
   CapitalizePipe,
@@ -12,6 +13,7 @@ export const pipes = [
   OrderByPipe,
   ShortenStringPipe,
   TemperaturePipe,
+  KrajPipe
 ];
 
 @NgModule({

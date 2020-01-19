@@ -48,6 +48,10 @@ export class UdalostProvider {
     }))
   }
 
+  deleteUdalost(udalost: Udalost): Observable<any> {
+    return from(this.db.object('/udalost/'+udalost.key).remove());
+  }
+
   updateUdalost(udalost: Udalost): Observable<any> {
     return from(firebase.database().ref('udalost/'+udalost.key).update({
       zalozil: udalost.zalozil,

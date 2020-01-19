@@ -8,9 +8,36 @@
 </ion-header>
 <ion-content>
   <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      {{item.title}}
-    </button>
+    <ion-item-sliding *ngFor="let item of items">
+      <ion-item>
+        {{item.nazev}}
+        <div class="item-note" item-right>
+          <h1> {{item.zalozil.nickname}} </h1>
+          <p>
+            {{item.datumUdalosti}} : {{item.zacatek}} - {{item.konec}}
+          </p>
+        </div>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="secondary" (click)="viewDetail(item)">
+          <ion-icon name="chatbubbles"></ion-icon>
+          Detail
+        </button>
+        <button ion-button color="primary" (click)="join(item)" *ngIf="!globalProvider.canI(item.zalozil.key)">
+          <ion-icon name="contacts"></ion-icon>
+          Přidat/Odebrat se
+        </button>
+        <button ion-button color="danger" (click)="delete(item)" *ngIf="globalProvider.canI(item.zalozil.key)">
+          <ion-icon name="trash"></ion-icon>
+          Smazat
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
-</ion-content>
 
+  <ion-fab bottom right>
+    <button ion-fab (click)='addUdalost()'>
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>

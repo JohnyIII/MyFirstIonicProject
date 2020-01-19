@@ -27,6 +27,7 @@ import {AlertProvider} from "../providers/alert.provider";
 import {UserUdalostProvider} from "../providers/userUdalost.provider";
 import {LoginPageModule} from "../pages/login/login.module";
 import {UdalostAndUserProvider} from "../providers/udalostAndUser.provider";
+import {ListsPageModule} from "../pages/list/list.module";
 
 const firebase = {
   apiKey: "AIzaSyBSMiCjENqE1jFthMAMH1SRglFcBplN0vg",
@@ -41,8 +42,7 @@ const firebase = {
   declarations: [
     MyApp,
     HelloIonicPage,
-    ItemDetailsPage,
-    ListPage
+    ItemDetailsPage
   ],
   imports: [
     BrowserModule,
@@ -56,14 +56,14 @@ const firebase = {
     RegisterPageModule,
     LoginPageModule,
     PlayerMapPageModule,
-    FindPlayerPageModule
+    FindPlayerPageModule,
+    ListsPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HelloIonicPage,
-    ItemDetailsPage,
-    ListPage
+    ItemDetailsPage
   ],
   providers: [
     StatusBar,

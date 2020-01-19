@@ -1,18 +1,22 @@
-<ion-header>
+<ion-header *ngIf="selectedItem">
   <ion-navbar>
-    <button menuToggle *ngIf="!selectedItem">
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>{{selectedItem.nazev}}</ion-title>
+    <ion-toolbar>
+      <ion-buttons slot="secondary">
+        <button ion-button (click)="dismiss()">
+          <ion-icon name="arrow-back"></ion-icon>
+          <ion-title>{{selectedItem.nazev}}</ion-title>
+        </button>
+      </ion-buttons>
+    </ion-toolbar>
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="selectedItem">
   <ion-list>
 
     <ion-item>
       <ion-label>Popis události</ion-label>
-      <ion-textarea [(ngModel)]="selectedItem.popis" [readonly]="edit"></ion-textarea>
+      <ion-textarea [(ngModel)]="selectedItem.popis" [disabled]="edit"></ion-textarea>
     </ion-item>
 
     <ion-item>
@@ -46,8 +50,6 @@
     <button ion-fab (click)='saveUdalost()' *ngIf="!edit && globalProvider.canI(selectedItem.zalozil.key)">
       <ion-icon name="checkmark"></ion-icon>
     </button>
-    <button ion-fab (click)="participate()" *ngIf="globalProvider.canI(selectedItem.zalozil.key)"></button>
-    <ion-icon name="ios-game-controller-a"></ion-icon>
   </ion-fab>
 
 </ion-content>

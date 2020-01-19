@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>PlayerDetail</ion-title>
+    <ion-title>Detail hráče</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -12,9 +12,6 @@
   <div class="header-image"></div>
   <div class="main-content" text-wrap text-center>
     <div class="circular"></div>
-    <h2>{{user.nickname}}</h2>
-<!--    <p class="profile-description">{{user.description}}</p>-->
-    <hr>
     <ion-list no-lines>
       <ion-item>
         <ion-icon name="mail" color="primary" item-start></ion-icon>
@@ -23,11 +20,19 @@
         <a button ion-button href="mailto:{{user.email}}" color="primary" item-end medium>Open App</a>
       </ion-item>
       <ion-item>
-        <ion-icon item-start name="pin" color="twitter"></ion-icon>
-        <p>{{user.kraj}}</p>
+        <ion-icon item-start name="pin" color="primary"></ion-icon>
+        <p>{{user.kraj | kraj}}</p>
+      </ion-item>
+      <ion-item>
+        <ion-icon item-start name="mic" color="primary" *ngIf="user.mikrofon"></ion-icon>
+        <ion-icon item-start name="mic-off" color="primary" *ngIf="!user.mikrofon"></ion-icon>
+        <p>VoiceChat</p>
+      </ion-item>
+      <ion-item>
+        <ion-icon item-start name="logo-octocat" color="primary"></ion-icon>
+        <p>{{user.nickname}}</p>
       </ion-item>
     </ion-list>
-    <h2>Get in touch</h2>
     <hr>
   </div>
 
